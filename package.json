@@ -19,7 +19,9 @@
   "homepage": "https://github.com/mjthecoder65/vidly#readme",
   "dependencies": {
     "express": "^4.18.1",
+    "fawn": "^2.1.5",
     "joi": "^17.6.0",
+    "joi-objectid": "^4.0.2",
     "mongoose": "^6.3.4"
   }
 }
