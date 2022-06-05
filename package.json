@@ -4,7 +4,11 @@
   "description": "Microservice for Movies Rental System",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "16.15.0"
   },
   "repository": {
     "type": "git",
@@ -18,10 +22,19 @@
   },
   "homepage": "https://github.com/mjthecoder65/vidly#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "compression": "^1.7.4",
+    "config": "^3.3.7",
     "express": "^4.18.1",
+    "express-async-errors": "^3.1.1",
     "fawn": "^2.1.5",
+    "helmet": "^5.1.0",
     "joi": "^17.6.0",
     "joi-objectid": "^4.0.2",
-    "mongoose": "^6.3.4"
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.3.4",
+    "winston": "^3.7.2",
+    "winston-mongodb": "^5.0.7"
   }
 }
