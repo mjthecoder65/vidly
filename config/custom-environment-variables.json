@@ -1,3 +1,4 @@
 {
-    "jwtPrivateKey": "VIDLY_JWT_PRIVATE_KEY"
+    "jwtPrivateKey": "VIDLY_JWT_PRIVATE_KEY",
+    "mongoURI": "VIDLY_MONGO_URI"
 }
