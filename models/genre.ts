@@ -1,5 +1,5 @@
 import Joi from "joi"
-import {Schema, model} from "mongoose";
+import { Schema, model } from "mongoose";
 
 interface IGenre {
     name: string
