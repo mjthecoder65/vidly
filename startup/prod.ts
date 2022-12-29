@@ -1,5 +1,6 @@
-const helmet = require("helmet");
-const compression = require("compression");
+
+import helmet from "helmet";
+import compression from "compression";
 
 module.exports = function(app) {
     app.use(helmet());

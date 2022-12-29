@@ -1,11 +1,15 @@
+
 const winston = require('winston');
 require("winston-mongodb");
 require("express-async-errors"); 
+import config from "config"
 
-module.exports = function () { 
+module.exports =  function () { 
 
     process.on('uncaughtException',(err) => {
+        console.log(err.message)
         console.log("WE GOT AN UNCAUGHT EXCEPTION");
+        console.log(err.message)
         winston.error(err.message, err);
     });
     
@@ -14,7 +18,7 @@ module.exports = function () {
         new winston.transports.Console({ colorize: true, prettyPrint: true }),
         );
     winston.add(new winston.transports.MongoDB({ 
-        db: process.env.MONGO_URL,
+        db: config.get("mongoURI"),
         level: 'error',
         options: { useUnifiedTopology: true }
     }));
