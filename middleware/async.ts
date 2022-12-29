@@ -1,4 +1,6 @@
-module.exports = function (handler) {
+
+
+export default function (handler) {
     // A wrapper function for router handler.
     return async (req, res, next) => {
         try {

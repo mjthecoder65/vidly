@@ -1,6 +1,8 @@
-const winston = require('winston');
+import winston from 'winston';
 
-module.exports = function(err, req, res, next) {
+import { Request, Response, NextFunction} from "express";
+
+export default function(err, req: Request, res: Response, next: NextFunction) {
     // TODO: logging errors
     // Logging Level: Determine the important of the message we are going to log
     /*  
