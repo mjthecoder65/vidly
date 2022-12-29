@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  app:
+    build: ./
+    container_name: vidly
+    command: npm run start
+    ports: 
+      - "8080:8080"
+    env_file: .env
+    depends_on:
+      - db
+      
+  db:
+    image: mongo
+    container_name: mongodb
+    volumes:
+      - ./data:/data/db
+    ports:
+      - '27018:27017'
+
+    
