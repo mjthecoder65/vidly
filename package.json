@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "build": "npx tsc",
+    "start": "node dist/index.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
   },
   "engines": {
     "node": "16.15.0"
@@ -22,19 +24,34 @@
   },
   "homepage": "https://github.com/mjthecoder65/vidly#readme",
   "dependencies": {
+    "@typegoose/typegoose": "^10.0.0",
+    "@types/mongoose": "^5.11.97",
     "bcrypt": "^5.0.1",
     "compression": "^1.7.4",
     "config": "^3.3.7",
+    "dotenv": "^16.0.3",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
     "fawn": "^2.1.5",
     "helmet": "^5.1.0",
-    "joi": "^17.6.0",
+    "joi": "^17.7.0",
     "joi-objectid": "^4.0.2",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "mongoose": "^6.3.4",
     "winston": "^3.7.2",
     "winston-mongodb": "^5.0.7"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.15",
+    "@types/jest": "^29.2.4",
+    "@types/node": "^18.11.18",
+    "@typescript-eslint/parser": "^5.47.1",
+    "concurrently": "^7.6.0",
+    "joi-to-typescript": "^4.0.7",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.4"
   }
 }
