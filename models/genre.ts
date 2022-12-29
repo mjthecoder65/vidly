@@ -1,7 +1,10 @@
 const Joi = require('joi');
-const mongoose = require("mongoose");
+import {Schema, model} from "mongoose";
 
-const genreSchema = new mongoose.Schema({
+interface IGenre {
+    name: string
+}
+const genreSchema = new Schema<IGenre>({
     name: {
         type: String,
         minLength: 5, 
@@ -12,14 +15,14 @@ const genreSchema = new mongoose.Schema({
     }
 });
 
-// A function for validating Genre.
-function validateGenre(genre) {
+
+function validateGenre(genre: IGenre) {
     const schema = Joi.object({
         name: Joi.string().min(5).required()
     });
     return schema.validate(genre)
 }
 
-const Genre = mongoose.model("Genre", genreSchema);
+const Genre = model<IGenre>("Genre", genreSchema);
 
-module.exports = { Genre, validateGenre, genreSchema };
+export { Genre, validateGenre, genreSchema };

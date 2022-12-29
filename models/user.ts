@@ -1,10 +1,24 @@
-const Joi = require('joi');
-const jwt = require("jsonwebtoken");
-const config = require('config')
-const mongoose = require("mongoose");
+import Joi from "joi"
+import jwt from "jsonwebtoken";
+import config from "config"
+import { Schema, model, Model } from "mongoose";
 
 
-const userSchema = new mongoose.Schema({
+interface IUser {
+    name: string;
+    email: string;
+    password: string;
+    isAdmin: boolean;
+}
+
+
+interface IUserMethods {
+    generateAuthToken(): string;
+}
+
+type UserModel = Model<IUser, {}, IUserMethods>;
+
+const userSchema  = new Schema<IUser, UserModel, IUserMethods>({
     name: {
         type: String,
         required: true,
@@ -32,12 +46,12 @@ const userSchema = new mongoose.Schema({
     isAdmin: Boolean
 })
 
-userSchema.methods.generateAuthToken = function() {
+userSchema.method("generateAuthToken",  function() {
     const token =  jwt.sign({_id: this._id, isAdmin: this.isAdmin }, config.get("jwtPrivateKey"))
     return token;
-}
+})
 
-const User = mongoose.model("User", userSchema);
+const User = model<IUser, UserModel>("User", userSchema);
 
 
 function validateUser(user) {
@@ -50,5 +64,5 @@ function validateUser(user) {
     return schema.validate(user);
 }
 
-module.exports = { User, validateUser }
+export { User, validateUser }
 

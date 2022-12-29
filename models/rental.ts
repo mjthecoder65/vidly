@@ -1,10 +1,10 @@
-const Joi = require('joi');
-const mongoose = require('mongoose');
+import Joi from 'joi';
+import { Schema, model } from "mongoose";
 
 
-const rentalSchema = new mongoose.Schema({
+const rentalSchema = new Schema({
     customer: {
-        type: new mongoose.Schema({
+        type: new Schema({
             name: {
                 type: String,
                 required: true,
@@ -27,7 +27,7 @@ const rentalSchema = new mongoose.Schema({
         required: true
     },
     movie: {
-        type: new mongoose.Schema({
+        type: new Schema({
             title: {
                 type: String,
                 required: true,
@@ -60,16 +60,16 @@ const rentalSchema = new mongoose.Schema({
 })
 
 
-const Rental = mongoose.model("Rental", rentalSchema);
+const Rental = model("Rental", rentalSchema);
 
 function validateRental(rental) {
     const schema = Joi.object({
-        customerId: Joi.objectId().required(),
-        movieId: Joi.objectId().required()
+        customerId: Joi.object().required(),
+        movieId: Joi.object().required()
     });
 
     return schema.validate(rental)
 }
 
 
-module.exports = {Rental, validateRental };
+export { Rental, validateRental };
