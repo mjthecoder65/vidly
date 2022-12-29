@@ -1,14 +1,18 @@
 const config = require('config');
+import config from "config";
 const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 const bcrypt = require('bcrypt')
+import bcrypt from "bcrypt";
 const _ = require('lodash');
-const { User, validateUser } = require("../models/user")
-const auth = require("../middleware/auth")
-const express = require("express");
-const router = express.Router()
+import _ from "lodash"
+import { User, validateUser } from "../models/user";
+import auth from "../middleware/auth";
+import express, { Router, Request, Response} from "express";
+const router: Router = express.Router()
 
 
-router.get("/me", auth, async (req, res) => {
+router.get("/me", auth, async (req , res: Response) => {
     const id = req.user._id
     const user = await User.findById(id).select("-password");
     res.send(user);
@@ -35,4 +39,4 @@ router.post("/", async(req, res) => {
 
 });
 
-module.exports = router;
+export default router;

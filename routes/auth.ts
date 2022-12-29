@@ -1,13 +1,11 @@
-const config = require('config')
-const jwt = require("jsonwebtoken");
-const Joi = require('joi');
-const bcrypt = require('bcrypt')
+import Joi from "joi";
+import bcrypt from "bcrypt";
 const _ = require('lodash');
-const { User } = require("../models/user")
-const express = require("express")
-const router = express.Router()
+import { User } from "../models/user";
+import express, { Router, Request, Response} from "express";
+const router: Router = express.Router()
 
-router.post("/", async(req, res) => {
+router.post("/", async(req: Request, res: Response) => {
     const { error } = validateUser(req.body)
     if (error) return res.status(400).send(error.details[0].message)
 
@@ -21,7 +19,12 @@ router.post("/", async(req, res) => {
     res.send(token);
 });
 
-function validateUser(req) {
+interface LoginBodyOfRequest {
+    email: string;
+    password: string
+}
+
+function validateUser(req: LoginBodyOfRequest) {
     const schema = Joi.object({
         email: Joi.string().min(5).max(255).email().required(),
         password: Joi.string().min(8).max(1024).required() // TODO: Password Complexity: joi-password-complexity
@@ -30,5 +33,4 @@ function validateUser(req) {
     return schema.validate(req);
 }
 
-
-module.exports = router;
+export default router;
