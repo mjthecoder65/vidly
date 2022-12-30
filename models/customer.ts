@@ -2,13 +2,13 @@ import Joi from "joi";
 import { Schema, model } from "mongoose";
 
 
-interface IUser{
+interface ICustomer{
     name: string;
     isGold: boolean;
     phone: string
 }
 
-const customerSchema = new Schema<IUser>({
+const customerSchema = new Schema<ICustomer>({
     name: {
         type: String,
         minLength: 5,
@@ -27,9 +27,9 @@ const customerSchema = new Schema<IUser>({
     }
 });
 
-const Customer = model<IUser>("Customer", customerSchema);
+const Customer = model<ICustomer>("Customer", customerSchema);
 
-function validateCustomer(customer: IUser) {
+function validateCustomer(customer: ICustomer) {
     const schema = Joi.object({
         name: Joi.string().min(5).max(255).required(),
         isGold: Joi.boolean().required(),
