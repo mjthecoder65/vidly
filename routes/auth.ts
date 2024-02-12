@@ -1,6 +1,6 @@
 import Joi from "joi";
 import bcrypt from "bcrypt";
-const _ = require('lodash');
+require('lodash');
 import { User } from "../models/user";
 import express, { Router, Request, Response} from "express";
 const router: Router = express.Router()
