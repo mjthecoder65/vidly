@@ -14,7 +14,6 @@ router.post("/", async(req: Request, res: Response) => {
 
     const validPassowrd = await bcrypt.compare(req.body.password, user.password);
     if (!validPassowrd) res.status(400).send("Invalid email or password");
-    // const token = jwt.sign({_id: user._id}, config.get("jwtPrivateKey")); // TODO: Change this one.
     const token = user.generateAuthToken();
     res.send(token);
 });
@@ -27,7 +26,7 @@ interface LoginBodyOfRequest {
 function validateUser(req: LoginBodyOfRequest) {
     const schema = Joi.object({
         email: Joi.string().min(5).max(255).email().required(),
-        password: Joi.string().min(8).max(1024).required() // TODO: Password Complexity: joi-password-complexity
+        password: Joi.string().min(8).max(1024).required()
     });
 
     return schema.validate(req);
