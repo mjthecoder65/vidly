@@ -6,9 +6,11 @@ import rentals from "../routes/rentals"
 import users from "../routes/users"
 import auth from "../routes/auth";
 import error from "../middleware/error";
+const morgan = require("morgan");
 
 
 module.exports = function(app) {
+    app.use(morgan('combined'))
     app.use(express.json());
     app.use("/api/genres", genres);
     app.use("/api/customers", customers);

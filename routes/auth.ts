@@ -14,14 +14,18 @@ router.post("/", async(req: Request, res: Response) => {
 
     const validPassowrd = await bcrypt.compare(req.body.password, user.password);
     if (!validPassowrd) res.status(400).send("Invalid email or password");
-    const token = user.generateAuthToken();
-    res.send(token);
+    
+    res.send({
+        token: user.generateAuthToken(),
+        authentication: "bearer"
+    });
 });
 
 interface LoginBodyOfRequest {
     email: string;
     password: string
 }
+
 
 function validateUser(req: LoginBodyOfRequest) {
     const schema = Joi.object({

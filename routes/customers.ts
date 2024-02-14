@@ -8,7 +8,7 @@ router.get("/", async (req: Request, res: Response) => {
 });
 
 router.post("/", async (req: Request, res: Response) => {
-    console.log(req.body);
+
     const { error } = validateCustomer(req.body);
     if (error) return res.status(400).send(error.details[0].message)
 
@@ -17,8 +17,8 @@ router.post("/", async (req: Request, res: Response) => {
         isGold: req.body.isGold,
         phone: req.body.phone
     })
-    const createdGenre = await customer.save();
-    res.send(createdGenre)
+    const createdCustomer = await customer.save();
+    res.send(createdCustomer)
 });
 
 

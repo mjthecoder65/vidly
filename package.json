@@ -10,7 +10,7 @@
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
   },
   "engines": {
-    "node": "16.15.0"
+    "node": "20.11.0"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "@typegoose/typegoose": "^10.0.0",
     "@types/mongoose": "^5.11.97",
     "bcrypt": "^5.0.1",
+    "chalk": "^5.3.0",
     "compression": "^1.7.4",
     "config": "^3.3.7",
     "dotenv": "^16.0.3",
@@ -39,6 +40,8 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "mongoose": "^6.3.4",
+    "morgan": "^1.10.0",
+    "npm-check-updates": "^16.14.15",
     "winston": "^3.7.2",
     "winston-mongodb": "^5.0.7"
   },

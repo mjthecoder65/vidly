@@ -1,7 +1,5 @@
 const config = require('config');
-import config from "config";
 const jwt = require("jsonwebtoken");
-import jwt from "jsonwebtoken";
 const bcrypt = require('bcrypt')
 import bcrypt from "bcrypt";
 const _ = require('lodash');
